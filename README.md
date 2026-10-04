@@ -1,5 +1,15 @@
 # EntraHygiene
 
+> **Snapshot, not maintained.** This tool works and its tests pass, but it is not under
+> active development: I am not adding features and I do not review pull requests on a
+> schedule. Issues are welcome and I do read them — a reply may take a while. Last
+> substantive change: September 2026.
+>
+> Maintained instead: [revtriage](https://github.com/earbona23/revtriage),
+> [entra-tripwire](https://github.com/earbona23/entra-tripwire),
+> [entraform](https://github.com/earbona23/entraform) and
+> [vantage](https://github.com/earbona23/vantage).
+
 A read-only PowerShell module for the recurring identity-hygiene checks every Microsoft
 365 administrator should run and almost none do. It **never writes** to the tenant, and a
 test enforces that.
