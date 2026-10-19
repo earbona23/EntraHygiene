@@ -24,7 +24,7 @@ GUID = '9597930a-0704-494c-9592-5b4620e98bdb'
 Author = 'Eduard Arbona'
 
 # Company or vendor of this module
-CompanyName = 'Unknown'
+CompanyName = 'ArrankaGo LLC'
 
 # Copyright statement for this module
 Copyright = '(c) Eduard Arbona. All rights reserved.'
