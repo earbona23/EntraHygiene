@@ -1,5 +1,12 @@
 # EntraHygiene
 
+[![CI](https://github.com/earbona23/EntraHygiene/actions/workflows/ci.yml/badge.svg)](https://github.com/earbona23/EntraHygiene/actions/workflows/ci.yml)
+[![PowerShell Gallery](https://img.shields.io/powershellgallery/v/EntraHygiene?label=PSGallery&color=5391FE)](https://www.powershellgallery.com/packages/EntraHygiene)
+[![Downloads](https://img.shields.io/powershellgallery/dt/EntraHygiene?label=installs&color=2f855a)](https://www.powershellgallery.com/packages/EntraHygiene)
+[![PowerShell 7.2+](https://img.shields.io/badge/PowerShell-7.2%2B-5391FE)](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)
+[![Licence: MIT](https://img.shields.io/badge/Licence-MIT-blue.svg)](LICENSE)
+[![Read-only](https://img.shields.io/badge/Microsoft%20Graph-read--only-0f6e6e)](#read-only-by-construction)
+
 A read-only PowerShell module for the recurring identity-hygiene checks every Microsoft
 365 administrator should run and almost none do. It **never writes** to the tenant, and a
 test enforces that.
@@ -35,6 +42,15 @@ appears in any file. "Read-only" is a verified property here, not a promise.
 
 ## Install and use
 
+Requires PowerShell 7.2 or later.
+
+```powershell
+Install-Module EntraHygiene -Scope CurrentUser
+```
+
+That pulls in `Microsoft.Graph.Authentication`, the module's only dependency. To run from
+a clone instead, use `Import-Module ./EntraHygiene/EntraHygiene.psd1`.
+
 ```powershell
 # Auth is yours to control — the module never touches credentials.
 Connect-MgGraph -Scopes @(
@@ -42,7 +58,7 @@ Connect-MgGraph -Scopes @(
   'UserAuthenticationMethod.Read.All','Policy.Read.All'
 )
 
-Import-Module ./EntraHygiene/EntraHygiene.psd1
+Import-Module EntraHygiene
 
 Get-EhStaleAccount -DiasInactividad 90 | Where-Object Habilitada
 Get-EhPrivilegedWithoutMfa

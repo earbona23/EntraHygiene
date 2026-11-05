@@ -24,6 +24,7 @@
         Invoke-EhGraph -Uri '/users?$select=id,displayName'
     #>
     [CmdletBinding()]
+    [OutputType([System.Collections.Generic.List[object]])]
     param(
         [Parameter(Mandatory)]
         [string] $Uri,

@@ -12,7 +12,7 @@
 RootModule = 'EntraHygiene.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.1.0'
+ModuleVersion = '1.0.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -27,7 +27,7 @@ Author = 'Eduard Arbona'
 CompanyName = 'ArrankaGo LLC'
 
 # Copyright statement for this module
-Copyright = '(c) Eduard Arbona. All rights reserved.'
+Copyright = '(c) 2026 Eduard Arbona. Released under the MIT licence.'
 
 # Description of the functionality provided by this module
 Description = 'Read-only Microsoft 365 / Entra ID identity hygiene checks. Finds stale accounts, privileged accounts without strong MFA, permanent vs eligible role assignments, conditional-access gaps, and licenses on inactive accounts. Outputs objects, not text.'
@@ -50,8 +50,13 @@ PowerShellVersion = '7.2'
 # Processor architecture (None, X86, Amd64) required by this module
 # ProcessorArchitecture = ''
 
-# Modules that must be imported into the global environment prior to importing this module
-# RequiredModules = @()
+# Modules that must be imported into the global environment prior to importing this module.
+# Microsoft.Graph.Authentication is the only dependency: every call the module makes goes
+# through Invoke-MgGraphRequest, so the full Microsoft.Graph meta-module is deliberately
+# not required: it would add dozens of generated sub-modules for no benefit.
+RequiredModules = @(
+    @{ ModuleName = 'Microsoft.Graph.Authentication'; ModuleVersion = '2.0.0' }
+)
 
 # Assemblies that must be loaded prior to importing this module
 # RequiredAssemblies = @()
@@ -69,8 +74,8 @@ PowerShellVersion = '7.2'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Get-EhStaleAccount', 'Get-EhPrivilegedWithoutMfa', 
-               'Get-EhRoleAssignment', 'Get-EhConditionalAccessGap', 
+FunctionsToExport = 'Get-EhStaleAccount', 'Get-EhPrivilegedWithoutMfa',
+               'Get-EhRoleAssignment', 'Get-EhConditionalAccessGap',
                'Get-EhInactiveLicense'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -97,8 +102,9 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = 'Entra', 'EntraID', 'Microsoft365', 'Security', 'Identity', 'Graph', 'Audit', 
-               'ReadOnly'
+        Tags = 'Entra', 'EntraID', 'AzureAD', 'Microsoft365', 'MicrosoftGraph', 'Security',
+               'Identity', 'Graph', 'Audit', 'ReadOnly', 'MFA', 'PIM', 'ConditionalAccess',
+               'BlueTeam', 'PSEdition_Core'
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/earbona23/EntraHygiene/blob/main/LICENSE'
@@ -107,10 +113,12 @@ PrivateData = @{
         ProjectUri = 'https://github.com/earbona23/EntraHygiene'
 
         # A URL to an icon representing this module.
-        # IconUri = ''
+        # A URL to an icon representing this module. Raw GitHub rather than the blob page:
+        # the Gallery fetches the bytes, so a URL that serves HTML shows no icon at all.
+        IconUri = 'https://raw.githubusercontent.com/earbona23/EntraHygiene/main/assets/icon.png'
 
         # ReleaseNotes of this module
-        # ReleaseNotes = ''
+        ReleaseNotes = '1.0.0 - First release on the PowerShell Gallery. Five read-only identity-hygiene checks over Microsoft Graph: stale accounts, privileged accounts without a strong authentication method, permanent versus eligible (PIM) role assignments, Conditional Access gaps, and licenses sitting on inactive accounts. Every cmdlet returns objects rather than formatted text. There is no write path in the module and a Pester test fails the build if a Graph write verb appears anywhere in it. Authentication is the caller''s existing Connect-MgGraph session; the module never handles credentials. Full history: https://github.com/earbona23/EntraHygiene/blob/main/CHANGELOG.md'
 
         # Prerelease string of this module
         # Prerelease = ''
