@@ -11,9 +11,10 @@ A read-only PowerShell module for the recurring identity-hygiene checks every Mi
 365 administrator should run and almost none do. It **never writes** to the tenant, and a
 test enforces that.
 
-> **Status: snapshot.** Feature-complete for what it does and its tests pass; last
-> substantive change September 2026. I am not adding features here, and issues are welcome
-> and read. Under active maintenance instead: [revtriage](https://github.com/earbona23/revtriage),
+> **Status: published and maintained for fixes.** v1.0.0 has been on the PowerShell
+> Gallery since November 2026. The public surface is deliberately frozen and I am not
+> planning new features, but bugs get fixed and issues are read and answered.
+> Under active development instead: [revtriage](https://github.com/earbona23/revtriage),
 > [entra-tripwire](https://github.com/earbona23/entra-tripwire),
 > [entraform](https://github.com/earbona23/entraform) and
 > [vantage](https://github.com/earbona23/vantage).
